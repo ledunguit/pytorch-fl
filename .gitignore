@@ -1,0 +1,5 @@
+myenv/
+logs
+core/__pycache__
+data/
+save/

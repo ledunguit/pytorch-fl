@@ -1,4 +1,5 @@
 # Hiển thị kết quả, biểu đồ và tiến trình
+from exp_details import exp_details
 from tqdm import tqdm
 import matplotlib.pyplot as plt
 
@@ -24,11 +25,14 @@ if __name__ == '__main__':
     device = 'cpu'
     # Kiểm tra xem có GPU hay không, nếu có thì dùng.
     args = args_parser()
+    exp_details(args, 'basic')
     if args.device:
         if args.device == 'cuda':
             if torch.cuda.is_available():
                 device = 'cuda'
                 torch.cuda.set_device('cuda')
+            else:
+                exit('Lỗi: Không tìm thấy phần cứng GPU hỗ trợ, vui lòng kiểm tra lại.')
     train_dataset, test_dataset, _ = get_dataset(args)
 
     # Xây dựng model
@@ -52,6 +56,7 @@ if __name__ == '__main__':
     # Nạp dữ liệu cho device
     global_model.to(device)
     global_model.train()
+    print(f'Chi tiết model:',args.model)
     print(global_model)
 
     # Training

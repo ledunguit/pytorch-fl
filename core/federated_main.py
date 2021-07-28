@@ -26,7 +26,7 @@ if __name__ == '__main__':
     logger = SummaryWriter('logs')
 
     args = args_parser()
-    exp_details(args)
+    exp_details(args, 'fl')
     device = "cpu"
     if args.device:
         if args.device == "cuda":
@@ -34,7 +34,7 @@ if __name__ == '__main__':
                 torch.cuda.set_device("cuda")
                 device = "cuda"
             else:
-                torch.cuda.set_device("cpu")
+                exit('Lỗi: Không tìm thấy phần cứng GPU hỗ trợ, vui lòng kiểm tra lại.')
 
     # load dataset and user groups
     train_dataset, test_dataset, user_groups = get_dataset(args)
@@ -63,6 +63,7 @@ if __name__ == '__main__':
     # Set the model to train and send it to device.
     global_model.to(device)
     global_model.train()
+    print(f'Chi tiết model:',args.model)
     print(global_model)
 
     # copy weights
