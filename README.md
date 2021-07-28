@@ -14,6 +14,7 @@ Các model sử dụng: MLP, CNN
 ```bash
 virtualenv my_env
 source my_env/bin/active
+pip install -r requirements.txt
 ```
 
 ## Dataset
