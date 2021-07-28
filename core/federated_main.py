@@ -41,7 +41,7 @@ if __name__ == '__main__':
 
     # BUILD MODEL
     if args.model == 'cnn':
-        # Convolutional neural netork
+        # CNN
         if args.dataset == 'mnist':
             global_model = CNNMnist(args=args)
         elif args.dataset == 'fmnist':
@@ -50,7 +50,7 @@ if __name__ == '__main__':
             global_model = CNNCifar(args=args)
 
     elif args.model == 'mlp':
-        # Multi-layer preceptron
+        # Multi-layer Preceptron
         img_size = train_dataset[0][0].shape
         len_in = 1
         for x in img_size:
@@ -113,8 +113,8 @@ if __name__ == '__main__':
         train_accuracy.append(sum(list_acc)/len(list_acc))
 
         # In ra kết quả sau từng round
-        if (epoch+1) % print_every == 0:
-            print(f' \nSố liệu trung bình sau {epoch+1} global rounds:')
+        if (epoch + 1) % print_every == 0:
+            print(f' \nSố liệu trung bình sau {epoch + 1} global rounds:')
             print(f'Training Loss : {np.mean(np.array(train_loss))}')
             print('Độ chính xác: {:.2f}% \n'.format(100*train_accuracy[-1]))
 
